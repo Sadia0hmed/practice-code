@@ -1,0 +1,47 @@
+#understanding
+
+        #basically this problem we are checking if a string contataining '(', ')', '{', '}', '[' and ']' is valid
+        # its valid if the opening character has a closing one and its in the correnct order.
+        # we can assume that its always going to start with an open bracket
+        # we need to check if the opening bracket matches the closed bracket.
+        # we somehow need to make sure its in the correct order
+
+
+
+        #solution
+
+        #so if its an open bracket we are gonna put it in the stack.
+        # the moment we reach a closed bracket the we need to pop the stack and make sure it matches.
+        # but if the stack is empty and we reach a closed bracket then we return false
+        #keep going until we reach the end
+        # if the stack is empty then we know its true.
+
+        #steps
+        # create a stack, which is just an array
+        # for loop
+        # if stakc is not empty and element is closed bracket
+        #pop the stack and check if element matches
+        #if it does not return false
+        #if stakc is empty and element is closed bracket
+        #return false
+        #if element an open bracket add to stack
+
+        #if stack empty return true
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        closed = {')': '(', '}': '{', ']':'['}
+        opened = ['(', '{', '[']
+        for n in s:
+            if stack  and n in closed:
+                element = stack.pop()
+                if element != closed[n]:
+                    print(n)
+                    return False
+            elif not stack  and n in closed:
+                print(n)
+                return False
+            elif n in opened:
+                stack.append(n)
+        if not stack:
+            return True
